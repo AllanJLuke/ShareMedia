@@ -29,10 +29,13 @@ var Class = function(ioParam) {
 
        socket.on("room",function(data)
        {
+
            data = data.trim().toLowerCase();
            if (data.substring(0, 1) == '/') {
                data = data.substring(1);
            }
+
+           socket.join(data);
           Room.find({ "roomPath": data }, function(err,rooms)
           {
               if (rooms.length == 0) {
@@ -63,7 +66,8 @@ var Class = function(ioParam) {
            console.log("GOT TEXTT");
            console.log(data);
            socket.room.text = data;
-           socket.broadcast.emit("text",data);
+           //BEING SENT TO EVERYONE!!!!
+           socket.broadcast.to(socket.room.roomPath).emit("text",data);
 
            //THIS SHOULD HAVE A TIME OUT
            socket.room.save();

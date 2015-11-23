@@ -9,6 +9,7 @@ $(document).ready(function()
     socket.on('connect',function()
     {
 
+
         socket.emit("room",window.location.pathname);
        socket.on('text',function(data){
            $("#editor").val(data);
