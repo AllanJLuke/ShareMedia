@@ -16,6 +16,7 @@ $(document).ready(function()
     });
 
 
+
     $("#editor").on("keyup",function(){
        socket.emit("text",$(this).val());
 
