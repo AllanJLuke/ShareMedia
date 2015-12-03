@@ -4,20 +4,25 @@
 $(document).ready(function()
 {
     var socket = io.connect("http://localhost:3000");
-
+    var canvas = document.getElementById("e");
+    var context = canvas.getContext("2d");
+    context.fillStyle = "black";
+    //context.font = "bold 12px Arial";
     socket.on('connect',function()
     {
         socket.emit("room",window.location.pathname);
 
         socket.on('text',function(data){
-
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillText($("#editor").val(), 10, 10);
             $("#editor").val(data);
         });
     });
 
 
-
     $("#editor").on("keyup",function(){
+       context.clearRect(0, 0, canvas.width, canvas.height);
+       context.fillText($(this).val(), 10, 10);
        socket.emit("text",$(this).val());
 
     });

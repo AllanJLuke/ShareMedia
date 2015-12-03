@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var updateInterval = 2000;
 var io;
 var Class = function(ioParam) {
-    mongoose.connect('mongodb://localhost:27017');
+    mongoose.connect('mongodb://comp3203:3203@ds031627.mongolab.com:31627/sharemedia');
     var roomSchema = mongoose.Schema({
         text: String,
         roomPath: String
