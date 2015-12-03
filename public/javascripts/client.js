@@ -14,17 +14,16 @@ $(document).ready(function()
 
         socket.on('text',function(data){
             context.clearRect(0, 0, canvas.width, canvas.height);
-            context.fillText($("#editor").val(), 10, 10);
             $("#editor").val(data);
+            context.fillText($("#editor").val(), 10, 10);
         });
     });
 
 
     $("#editor").on("keyup",function(){
        context.clearRect(0, 0, canvas.width, canvas.height);
-       context.fillText($(this).val(), 10, 10);
        socket.emit("text",$(this).val());
-
+       context.fillText($(this).val(), 10, 10);
     });
 
     $(function(){
