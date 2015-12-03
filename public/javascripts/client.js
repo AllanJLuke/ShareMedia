@@ -34,15 +34,15 @@ $(document).ready(function()
     File.prototype.convert = function(callback){
         var FR= new FileReader();
         FR.onload = function(e) {
-            callback(e.target.result)
+            callback(e.target.result);
         };
         FR.readAsDataURL(this);
-    }
+    };
     $("#upload").on('change',function(){
         var selectedFile = this.files[0];
         selectedFile.convert(function(base64){
            console.log(base64);
-        })
+        });
     });
 
 });
