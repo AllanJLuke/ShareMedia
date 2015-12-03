@@ -1,12 +1,54 @@
 /**
  * Created by allan on 2015-11-22.
  */
+
+
+
 $(document).ready(function()
 {
+
+
     var socket = io.connect("http://localhost:3000");
+
     var canvas = document.getElementById("e");
     var context = canvas.getContext("2d");
+    var maxWidth = canvas.width;
+    var lineHeight = context.measureText("M").width * 1.2;
     context.fillStyle = "black";
+    var yoffset = 10;
+
+   function fillTextMultiLine(context, text, x, y) {
+      var lines = text.split("\n");
+      for (var i = 0; i < lines.length; ++i) {
+          context.fillText(lines[i], x, y);
+          y += lineHeight;
+      }
+      yoffset = y;
+   }
+
+   function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            //context.fillText(line, x, y);
+            fillTextMultiLine(context, line, x, y);
+            line = words[n] + ' ';
+            //y += lineHeight;
+            y = yoffset;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        //context.fillText(line, x, y);
+        fillTextMultiLine(context, line, x, y);
+      }
+
     //context.font = "bold 12px Arial";
     socket.on('connect',function()
     {
@@ -15,7 +57,9 @@ $(document).ready(function()
         socket.on('text',function(data){
             context.clearRect(0, 0, canvas.width, canvas.height);
             $("#editor").val(data);
-            context.fillText($("#editor").val(), 10, 10);
+            wrapText(context, $("#editor").val(), 10, 10, maxWidth, lineHeight);
+            //fillTextMultiLine(context, $("#editor").val(), 10, 10);
+            //context.fillText($("#editor").val(), 10, 10);
         });
     });
 
@@ -23,7 +67,9 @@ $(document).ready(function()
     $("#editor").on("keyup",function(){
        context.clearRect(0, 0, canvas.width, canvas.height);
        socket.emit("text",$(this).val());
-       context.fillText($(this).val(), 10, 10);
+       wrapText(context, $(this).val(), 10, 10, maxWidth, lineHeight);
+       //fillTextMultiLine(context, $(this).val(), 10, 10);
+       //context.fillText($(this).val(), 10, 10);
     });
 
     $(function(){
