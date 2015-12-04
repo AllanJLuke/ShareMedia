@@ -6,7 +6,17 @@
 
 $(document).ready(function()
 {
-
+    $("#editor").focus();
+    $("#e").on('focus', function(){
+        $("#editor").focus();
+    });
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
 
     var socket = io.connect("http://localhost:3000");
 

@@ -1,13 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#toolbar{
+    top: 15px;
+    background-color: white;
+    align-content: center;
+;
 }
-
-a {
-  color: #00B7FF;
+#upload{
 }
-
-
-input[type=file] {
-  width: 1px;
+#doc{
+    margin-top: 40px;
 }
