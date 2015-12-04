@@ -6,6 +6,10 @@ html
         script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
         script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.js")
         script(type="text/javascript" src="/javascripts/client.js")
+        <canvas id="e" width="1000" height="333"></canvas>
     body
         textarea(id="editor")
         block content
+
+<input type="file" style="visibility:hidden;" id="upload" />
+<input type="button" id="clickme" value="Upload Picture!" />

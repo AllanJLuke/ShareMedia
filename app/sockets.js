@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var updateInterval = 2000;
 var io;
 var Class = function(ioParam) {
-    mongoose.connect('mongodb://localhost:27017');
+    mongoose.connect('mongodb://comp3203:3203@ds031627.mongolab.com:31627/sharemedia');
     var roomSchema = mongoose.Schema({
         text: String,
         roomPath: String
@@ -38,7 +38,7 @@ var Class = function(ioParam) {
            socket.join(data);
           Room.find({ "roomPath": data }, function(err,rooms)
           {
-              if (rooms.length == 0) {
+              if (rooms.length === 0) {
                   var newRoom = new Room({
                       text: "Fueled by Tim Hortons.",
                       roomPath: data
@@ -75,46 +75,5 @@ var Class = function(ioParam) {
        });
     });
 };
-
-
-//
-////Waits for a start command before it begins polling the openweathermap api.
-//Class.prototype.start = function (city)
-//{
-//    if (city != undefined)
-//    {
-//        defaultCity = city;
-//    }
-//
-//    thisService = this;
-//    this.getWeather(defaultCity);
-//    setInterval(function(){Class.prototype.getWeather(defaultCity);}, interval);
-//};
-//
-//
-////from 07_weather_service.js
-//Class.prototype.getWeather = function (city){
-//
-//
-//    //http request for getting the weather in metric units.
-//    var options = {
-//        host: 'api.openweathermap.org',
-//        path: '/data/2.5/weather?q=' + city +
-//        '&appid='+appID +'&units=metric'
-//    };
-//    //Sends the request, and throws an event if there was a change in weather.
-//    http.request(options, function(weatherResponse){
-//        var weather = parseWeather(weatherResponse,function callback(weather)
-//        {
-//            if (weather != cache) {
-//                cache = weather;
-//                thisService.emit("weatherUpdate", weather);
-//            }
-//        });
-//
-//
-//    }).end();
-//};
-
 
 module.exports = Class;
