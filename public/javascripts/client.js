@@ -30,6 +30,10 @@ $(document).ready(function()
       };
   }
 
+  $("#e").on('click', function(){
+    cursorBlink(context, getMousePos(context));
+  });
+
   function cursorBlink(context, x, y){
     context.strokeStyle="blue";
     context.moveTo(x,y);
