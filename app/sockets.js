@@ -6,7 +6,13 @@ var Class = function(ioParam) {
     mongoose.connect('mongodb://comp3203:3203@ds031627.mongolab.com:31627/sharemedia');
     var roomSchema = mongoose.Schema({
         text: String,
-        roomPath: String
+        roomPath: String,
+        images: [{
+            type: String,
+            required: true,
+            notEmpty: true
+
+        }]
     });
 
 
@@ -49,12 +55,18 @@ var Class = function(ioParam) {
                       if (err) return console.error(err);
                       console.log(newRoom.roomPath + " CREATED");
                       socket.emit("text",newRoom.text);
+
                   });
                   socket.room = newRoom;
               }
               else{
                   socket.room = rooms[0];
                   socket.emit("text",socket.room.text);
+
+                  for (var i = 0; i < socket.room.images.length; i++)
+                  {
+                      socket.emit("image",socket.room.images[i]);
+                  }
               }
 
           });
@@ -63,7 +75,7 @@ var Class = function(ioParam) {
        socket.on("text",function(data){
 
 
-           console.log("GOT TEXTT");
+
            console.log(data);
            socket.room.text = data;
            //BEING SENT TO EVERYONE!!!!
@@ -73,6 +85,20 @@ var Class = function(ioParam) {
            socket.room.save();
 
        });
+
+        socket.on("image",function(data)
+        {
+
+
+            console.log(data);
+            socket.broadcast.to(socket.room.roomPath).emit("image",data);
+
+
+            socket.room.images.push(data);
+            socket.room.save();
+
+        });
+
     });
 };
 

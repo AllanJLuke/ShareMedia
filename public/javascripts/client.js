@@ -18,7 +18,7 @@ $(document).ready(function()
   var textArray;
 
   $("#editor").focus();
-  $("#e").on('focus', function(){
+  $("#e").on('click', function(){
       $("#editor").focus();
   });
 
@@ -29,6 +29,13 @@ $(document).ready(function()
           y: evt.clientY - rect.top
       };
   }
+
+    function addImage(base64)
+    {
+        $("#imageRow").append( "<img class='imageBox' src='"+base64+"' />");
+
+        $('.imageBox').materialbox();
+    }
 
   function cursorBlink(context, x, y){
     context.strokeStyle="blue";
@@ -113,6 +120,16 @@ $(document).ready(function()
             //fillTextMultiLine(context, $("#editor").val(), 10, 10);
             //context.fillText($("#editor").val(), 10, 10);
         });
+
+
+        socket.on('image',function(data){
+
+            console.log("GOT AN IMAGE");
+           addImage(data);
+
+
+            //context.drawImage(image, 0, 0);
+        });
     });
 
 
@@ -127,7 +144,7 @@ $(document).ready(function()
     });
 
     $(function(){
-        $('#clickme').click(function(){
+        $('#uploadButton').click(function(){
             $('#upload').click();
         });
     });
@@ -141,8 +158,12 @@ $(document).ready(function()
     $("#upload").on('change',function(){
         var selectedFile = this.files[0];
         selectedFile.convert(function(base64){
-           console.log(base64);
+            console.log(base64);
+            socket.emit("image",base64);
+            addImage(base64);
         });
     });
+
+
 
 });
