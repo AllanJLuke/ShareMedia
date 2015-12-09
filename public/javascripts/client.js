@@ -10,11 +10,11 @@ $(document).ready(function()
   var socket = io.connect();
 
   var canvas = document.getElementById("e");
-  //canvas.width=window.innerWidth * 0.75;
-  //canvas.height=window.innerHeight * 0.75;
+  canvas.width=document.getElementById("doc").clientWidth-50;
+  canvas.height=document.getElementById("doc").clientHeight;
   var context = canvas.getContext("2d");
   var maxWidth = canvas.width;
-  var lineHeight = context.measureText("M").width * 1.8;
+  var lineHeight = context.measureText("M").width * 2.0;
   var charWidth = context.measureText("M").width;
   context.fillStyle = "black";
   context.font = "16px Arial";
