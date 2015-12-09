@@ -14,7 +14,7 @@ $(document).ready(function()
   //canvas.height=window.innerHeight * 0.75;
   var context = canvas.getContext("2d");
   var maxWidth = canvas.width;
-  var lineHeight = context.measureText("M").width * 1.2;
+  var lineHeight = context.measureText("M").width * 1.4;
   var charWidth = context.measureText("M").width;
   context.fillStyle = "black";
   context.font = "16px Arial";
