@@ -133,7 +133,7 @@ $(document).ready(function()
             context.clearRect(0, 0, canvas.width, canvas.height);
             $("#editor").val(data);
             storeText($("#editor").val());
-            printText(context, 10, 10);
+            printText(context, 10, 14);
             //wrapText(context, $("#editor").val(), 10, 10, maxWidth, lineHeight);
             //fillTextMultiLine(context, $("#editor").val(), 10, 10);
             //context.fillText($("#editor").val(), 10, 10);
@@ -155,7 +155,7 @@ $(document).ready(function()
        context.clearRect(0, 0, canvas.width, canvas.height);
        socket.emit("text",$(this).val());
        storeText($(this).val());
-       printText(context, 10, 10);
+       printText(context, 10, 14);
        //wrapText(context, $(this).val(), 10, 10, maxWidth, lineHeight);
        //fillTextMultiLine(context, $(this).val(), 10, 10);
        //context.fillText($(this).val(), 10, 10);
@@ -167,12 +167,12 @@ $(document).ready(function()
         if(!bold){
           context.font = "bold 16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
-          printText(context, 10, 10);
+          printText(context, 10, 14);
           bold = true;
         }else{
           context.font = "16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
-          printText(context, 10, 10);
+          printText(context, 10, 14);
           bold = false;
         }
       });
@@ -185,12 +185,12 @@ $(document).ready(function()
         if(!italic){
           context.font = "italic 16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
-          printText(context, 10, 10);
+          printText(context, 10, 14);
           italic = true;
         }else{
           context.font = "16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
-          printText(context, 10, 10);
+          printText(context, 10, 14);
           italic = false;
         }
       });
