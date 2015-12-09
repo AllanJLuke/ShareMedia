@@ -90,7 +90,7 @@ $(document).ready(function()
         //cursorBlink(context, x+testWidth, y);
         y += lineHeight;
     }
-    //yoffset = y;
+    yoffset = y;
   }
 /*
   function fillTextMultiLine(context, text, x, y) {
