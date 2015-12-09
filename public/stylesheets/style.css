@@ -35,5 +35,8 @@ footer {
 #imageRow{
     display:flex;
 }
-
+textarea{
+    width:0px;
+    margin:-999px;
+}
 
