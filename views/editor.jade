@@ -6,10 +6,14 @@ block content
                 span.hide
                     input#upload(type="file")
 
-                input#clickme.btn.waves-effect.waves-light.blue.darken-2(type="button", value="Upload Picture!")
+                input#uploadButton.btn.waves-effect.waves-light.blue.darken-2(type="button", value="Upload Picture!")
                 input#bold.btn.waves-effect.waves-light.blue.darken-2(type="button", value="Bold")
                 input#italicize.btn.waves-effect.waves-light.blue.darken-2(type="button", value="Italicize")
 
+        .row
+            .col.s12.m12.l12
+                .p Shared Images
+                #imageRow.card-panel.z-depth-1
         .row
             .col.s12.m12.l12
                 #doc.card-panel.z-depth-3
