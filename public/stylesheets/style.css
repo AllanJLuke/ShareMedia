@@ -19,7 +19,7 @@ html,body{
     font-size: inherit;
 }
 footer {
-    position:absolute;
+    position:relative;
     width:100%;
     bottom:0px;
 }
