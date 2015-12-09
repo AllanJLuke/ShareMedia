@@ -149,7 +149,69 @@ $(document).ready(function()
        //fillTextMultiLine(context, $(this).val(), 10, 10);
        //context.fillText($(this).val(), 10, 10);
     });
+    var bold = false;
+    $(function(){
+      $('#bold').click(function(){
+        //context.font = "bold 12px Arial";
+        if(!bold){
+          context.font = "bold 12px Arial";
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          printText(context, 10, 10);
+          bold = true;
+        }else{
+          context.font = "12px Arial";
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          printText(context, 10, 10);
+          bold = false;
+        }
+      });
+    });
 
+    var italic = false;
+    $(function(){
+      $('#italicize').click(function(){
+        //context.font = "italic 12px Arial";
+        if(!italic){
+          context.font = "italic 12px Arial";
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          printText(context, 10, 10);
+          italic = true;
+        }else{
+          context.font = "12px Arial";
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          printText(context, 10, 10);
+          italic = false;
+        }
+      });
+    });
+    /*
+    var bold = false;
+    $('#bold').on('change', function(){
+      if(bold === false){
+        context.font = "bold 12px Arial";
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        printText(context, 10, 10);
+      }else{
+        context.font = "12px Arial";
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        printText(context, 10, 10);
+      }
+    });
+
+    var italic = false;
+    $('#italicize').on('change', function(){
+      if(italic === false){
+        context.font = "italic 12px Arial";
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        printText(context, 10, 10);
+        italic = true;
+      }else{
+        context.font = "12px Arial";
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        printText(context, 10, 10);
+      }
+    });
+    */
     $(function(){
         $('#uploadButton').click(function(){
             $('#upload').click();
