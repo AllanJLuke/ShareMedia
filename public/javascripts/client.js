@@ -13,7 +13,9 @@ $(document).ready(function()
   var context = canvas.getContext("2d");
   var maxWidth = canvas.width;
   var lineHeight = context.measureText("M").width * 1.2;
+  var charWidth = context.measureText("M").width;
   context.fillStyle = "black";
+  context.font = "12px Arial";
   var yoffset = 10;
   var textArray;
 
@@ -30,17 +32,13 @@ $(document).ready(function()
       };
   }
 
-  $("#e").on('click', function(){
-    cursorBlink(context, getMousePos(context));
-  });
-
   function cursorBlink(context, x, y){
-    context.strokeStyle="blue";
-    context.moveTo(x,y);
-    context.lineTo(x,y+lineHeight);
-    context.stroke();
+    context.fillStyle = "blue";
+    context.font = " bold 14px Arial";
+    context.fillText("|", x - 2, y);
+    context.fillStyle = "black";
+    context.font = "12px Arial";
   }
-
 
 
   function storeText(text){
@@ -52,13 +50,17 @@ $(document).ready(function()
         //context.fillText(textArray[i], x, y);
         var words = textArray[i].split(' ');
         var line = '';
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
 
         for(var n = 0; n < words.length; n++) {
           var testLine = line + words[n] + ' ';
-          var metrics = context.measureText(testLine);
-          var testWidth = metrics.width;
+          metrics = context.measureText(testLine);
+          testWidth = metrics.width;
           if (testWidth > maxWidth && n > 0) {
+            //context.clearRect(0, 0, canvas.width, canvas.height);
             context.fillText(line, x, y);
+            //cursorBlink(context, x+testWidth, y);
             line = words[n] + ' ';
             y += lineHeight;
           }
@@ -66,7 +68,9 @@ $(document).ready(function()
             line = testLine;
           }
         }
+        //context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillText(line, x, y);
+        //cursorBlink(context, x+testWidth, y);
         y += lineHeight;
     }
   }
@@ -103,7 +107,6 @@ $(document).ready(function()
       fillTextMultiLine(context, line, x, y);
     }
 */
-    //context.font = "bold 12px Arial";
     socket.on('connect',function()
     {
         socket.emit("room",window.location.pathname);
