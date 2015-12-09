@@ -1,11 +1,33 @@
-doctype html
-html
-    head
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
-        script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.js")
-        script(type="text/javascript" src="/javascripts/client.js")
-    body
-        p.
-            Connect to an editing session by accessing a subdomain.
+extends layout
+block content
+    #banner.section.no-pad-bot
+        .container
+            h1.header.center.orange-text.darken-2 ....< SmartEdit >....
+            .container
+                .section.row
+                    .col.m6.l4.s12.push-m3.push-l4
+                        .input-field
+                            input(type="text",id="padInput")
+                            label(for="padInput") Enter Pad name to start
+                        .section.row.center
+
+                             button.btn.waves-effect.waves-light.blue.darken-2(onclick="goToPad()") Go to Pad
+
+        .container
+            .section.row
+                .col.m4.l4
+                    h2.center.blue-text.darken-2.icon-block
+                        i.material-icons group
+                    h5.center Real Time Collaboration with Multiple Users
+                .col.m4.l4
+                    h2.center.blue-text.darken-2.icon-block
+                        i.material-icons insert_photo
+                    h5.center Multimedia Support
+                .col.m4.l4
+                    h2.center.blue-text.darken-2.icon-block
+                        i.material-icons playlist_add_check
+                    h5.center Easy to Use and Setup
+
+
+
+

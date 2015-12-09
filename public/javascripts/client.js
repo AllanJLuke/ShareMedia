@@ -146,3 +146,7 @@ $(document).ready(function()
     });
 
 });
+function goToPad(){
+    var string = $("#padInput").val();
+    window.location.href = ("/" + string);
+}
