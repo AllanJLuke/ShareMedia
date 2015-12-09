@@ -10,12 +10,14 @@ $(document).ready(function()
   var socket = io.connect();
 
   var canvas = document.getElementById("e");
+  //canvas.width=window.innerWidth * 0.75;
+  //canvas.height=window.innerHeight * 0.75;
   var context = canvas.getContext("2d");
   var maxWidth = canvas.width;
   var lineHeight = context.measureText("M").width * 1.2;
   var charWidth = context.measureText("M").width;
   context.fillStyle = "black";
-  context.font = "12px Arial";
+  context.font = "16px Arial";
   var yoffset = 24;
   var textArray;
 
@@ -46,15 +48,15 @@ $(document).ready(function()
     };
     image.src = base64;
   }
-  */
+
   function cursorBlink(context, x, y){
     context.fillStyle = "blue";
-    context.font = " bold 14px Arial";
+    context.font = " bold 18px Arial";
     context.fillText("|", x - 2, y);
     context.fillStyle = "black";
     context.font = "12px Arial";
   }
-
+  */
 
   function storeText(text){
     textArray = text.split("\n");
@@ -163,12 +165,12 @@ $(document).ready(function()
       $('#bold').click(function(){
         //context.font = "bold 12px Arial";
         if(!bold){
-          context.font = "bold 12px Arial";
+          context.font = "bold 16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
           printText(context, 10, 10);
           bold = true;
         }else{
-          context.font = "12px Arial";
+          context.font = "16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
           printText(context, 10, 10);
           bold = false;
@@ -181,12 +183,12 @@ $(document).ready(function()
       $('#italicize').click(function(){
         //context.font = "italic 12px Arial";
         if(!italic){
-          context.font = "italic 12px Arial";
+          context.font = "italic 16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
           printText(context, 10, 10);
           italic = true;
         }else{
-          context.font = "12px Arial";
+          context.font = "16px Arial";
           context.clearRect(0, 0, canvas.width, canvas.height);
           printText(context, 10, 10);
           italic = false;
