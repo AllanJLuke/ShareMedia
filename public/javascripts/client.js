@@ -16,7 +16,7 @@ $(document).ready(function()
   var charWidth = context.measureText("M").width;
   context.fillStyle = "black";
   context.font = "12px Arial";
-  var yoffset = 10;
+  var yoffset = 24;
   var textArray;
 
   $("#editor").focus();
@@ -38,7 +38,15 @@ $(document).ready(function()
 
         $('.imageBox').materialbox();
     }
-
+    /*
+  function picture(base64, x, y){
+    var image = new Image();
+    image.onload = function() {
+        context.drawImage(image, x, y);
+    };
+    image.src = base64;
+  }
+  */
   function cursorBlink(context, x, y){
     context.fillStyle = "blue";
     context.font = " bold 14px Arial";
@@ -80,6 +88,7 @@ $(document).ready(function()
         //cursorBlink(context, x+testWidth, y);
         y += lineHeight;
     }
+    //yoffset = y;
   }
 /*
   function fillTextMultiLine(context, text, x, y) {
@@ -133,7 +142,7 @@ $(document).ready(function()
 
             console.log("GOT AN IMAGE");
            addImage(data);
-
+           //picture(data, 10, yoffset);
 
             //context.drawImage(image, 0, 0);
         });
